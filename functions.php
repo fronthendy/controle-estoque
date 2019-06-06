@@ -50,12 +50,29 @@ $produtos[] = [
     "status" => true
 ];
 
-$soma = 0;
 
-foreach ($produtos as $key => $produto) {
-    $produtos[$key]["total"] = $produto["preco"] * $produto["estoque"];
-    $soma = $soma + $produtos[$key]["total"];
+function totalProduto ($produtoPreco, $produtoEstoque)
+{
+
+    $total = $produtoPreco * $produtoEstoque;
+
+    return $total;
 }
+
+function totalEstoque()
+{
+    global $produtos;
+    $soma = 0;
+
+    foreach ($produtos as $key => $produto) {
+        $soma = $soma + totalProduto($produto['preco'], $produto['estoque']);
+    }
+
+    return $soma;
+}
+
+
+
 
 
   // var_dump($produtos);

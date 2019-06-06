@@ -23,12 +23,6 @@ include_once('header.php'); // inclui header na pagina
       <?php
 
       foreach ($produtos as $indice => $valor) {
-        // if($valor["estoque"] < $valor["min"]) {
-        //   $class = "vermelho";
-        // } else {
-        //   $class = "";
-        // }
-
         $class = ($valor["estoque"] < $valor["min"]) ? "vermelho" : "";
 
         echo "<tr class='$class'>";
@@ -37,7 +31,7 @@ include_once('header.php'); // inclui header na pagina
         echo "<td>" . $valor["estoque"] . "</td>";
         echo "<td>" . $valor["min"] . "</td>";
         echo "<td>" . ($valor["status"] ? "Ativo" : "Desativado") . "</td>";
-        echo "<td> R$" . $valor["total"] . "</td>";
+        echo "<td> R$" . number_format(totalProduto($valor['preco'], $valor['estoque']), 2, ',', '.') . "</td>";
         echo "</tr>";
       }
 
@@ -45,8 +39,12 @@ include_once('header.php'); // inclui header na pagina
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="6">
-          <?php echo "Total em estoque R$ " . $soma; ?>
+        <td colspan="3">
+        Total em estoque
+      </td>
+      <td colspan="3" class="text-right">
+          <?php echo "R$ " . number_format(totalEstoque()); ?>
+
         </td>
       </tr>
     </tfoot>
