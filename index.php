@@ -22,17 +22,21 @@ include_once('header.php'); // inclui header na pagina
 
       <?php
 
-      foreach ($produtos as $indice => $valor) {
-        $class = ($valor["estoque"] < $valor["min"]) ? "vermelho" : "";
+      $produtos = exibirProdutos();
 
-        echo "<tr class='$class'>";
-        echo "<td>" . $valor["nome"] . "</td>";
-        echo "<td> R$" . $valor["preco"] . "</td>";
-        echo "<td>" . $valor["estoque"] . "</td>";
-        echo "<td>" . $valor["min"] . "</td>";
-        echo "<td>" . ($valor["status"] ? "Ativo" : "Desativado") . "</td>";
-        echo "<td> R$" . number_format(totalProduto($valor['preco'], $valor['estoque']), 2, ',', '.') . "</td>";
-        echo "</tr>";
+      if (count($produtos) > 0) {
+
+        foreach ($produtos as $indice => $valor) {
+          $class = ($produtos[$indice]["estoque"] < $produtos[$indice]["min"]) ? "vermelho" : "";
+          echo "<tr class='$class'>";
+          echo "<td>" . $produtos[$indice]["nome"] . "</td>";
+          echo "<td> R$" . $produtos[$indice]["preco"] . "</td>";
+          echo "<td>" . $produtos[$indice]["estoque"] . "</td>";
+          echo "<td>" . $produtos[$indice]["min"] . "</td>";
+          echo "<td>" . ($produtos[$indice]["status"] == "true" ? "Ativo" : "Desativado") . "</td>";
+          echo "<td> R$" . number_format(totalProduto($produtos[$indice]['preco'], $produtos[$indice]['estoque']), 2, ',', '.') . "</td>";
+          echo "</tr>";
+        }
       }
 
       ?>
@@ -40,9 +44,9 @@ include_once('header.php'); // inclui header na pagina
     <tfoot>
       <tr>
         <td colspan="3">
-        Total em estoque
-      </td>
-      <td colspan="3" class="text-right">
+          Total em estoque
+        </td>
+        <td colspan="3" class="text-right">
           <?php echo "R$ " . number_format(totalEstoque()); ?>
 
         </td>
@@ -53,5 +57,5 @@ include_once('header.php'); // inclui header na pagina
 
 
 <?php
-  include_once("footer.php");
+include_once("footer.php");
 ?>

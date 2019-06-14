@@ -1,55 +1,55 @@
 <?php
 session_start();
 
-$produtos = [];
+// $produtos = [];
 
-$produtos[] = [
-    "nome" => "Camiseta Moletom",
-    "preco" => 50.99,
-    "estoque" => 100,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Camiseta Moletom",
+//     "preco" => 50.99,
+//     "estoque" => 100,
+//     "min" => 20,
+//     "status" => true
+// ];
 
-$produtos[] = [
-    "nome" => "Calça Jeans",
-    "preco" => 80.99,
-    "estoque" => 100,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Calça Jeans",
+//     "preco" => 80.99,
+//     "estoque" => 100,
+//     "min" => 20,
+//     "status" => true
+// ];
 
-$produtos[] = [
-    "nome" => "Calça Moletom",
-    "preco" => 180.99,
-    "estoque" => 10,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Calça Moletom",
+//     "preco" => 180.99,
+//     "estoque" => 10,
+//     "min" => 20,
+//     "status" => true
+// ];
 
-$produtos[] = [
-    "nome" => "Tenis Maneiro",
-    "preco" => 380.99,
-    "estoque" => 100,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Tenis Maneiro",
+//     "preco" => 380.99,
+//     "estoque" => 100,
+//     "min" => 20,
+//     "status" => true
+// ];
 
-$produtos[] = [
-    "nome" => "Calça Moletom",
-    "preco" => 80.99,
-    "estoque" => 100,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Calça Moletom",
+//     "preco" => 80.99,
+//     "estoque" => 100,
+//     "min" => 20,
+//     "status" => true
+// ];
 
-$produtos[] = [
-    "nome" => "Patinete de Empreendedor Hipster",
-    "preco" => 80.99,
-    "estoque" => 100,
-    "min" => 20,
-    "status" => true
-];
+// $produtos[] = [
+//     "nome" => "Patinete de Empreendedor Hipster",
+//     "preco" => 80.99,
+//     "estoque" => 100,
+//     "min" => 20,
+//     "status" => true
+// ];
 
 
 function totalProduto($produtoPreco, $produtoEstoque)
@@ -92,6 +92,8 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['cadastro-produto'])) {
 
+    // trazer upload de foto do produto
+
     $arquivoProdutos = "produtos.json";
 
     if (file_exists($arquivoProdutos)) {
@@ -104,9 +106,23 @@ if (isset($_POST['cadastro-produto'])) {
     } else {
         $arquivo = fopen($arquivoProdutos, "w");
         $arrayProdutos = ["produtos" => []];
+        unset($_POST['cadastro-produto']);
+        $_POST["status"] = true;
+        $arrayProdutos['produtos'][] = $_POST;
         $jsonProdutos = json_encode($arrayProdutos, true);
         var_dump($jsonProdutos);
         file_put_contents($arquivoProdutos, $jsonProdutos);
+    }
+}
+
+function exibirProdutos()
+{
+    $arquivoProdutos = "produtos.json";
+
+    if (file_exists($arquivoProdutos)) {
+        $jsonProdutos = file_get_contents($arquivoProdutos);
+        $arrayProdutos = json_decode($jsonProdutos, true);
+        return $arrayProdutos["produtos"];
     }
 }
 

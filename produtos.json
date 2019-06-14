@@ -1,18 +1,21 @@
 {
     "produtos": [{
-        "nome": "bala",
-        "preco": "10",
-        "qtd": "105",
-        "qtd-minima": "1"
+        "nome": "Camiseta Branca",
+        "preco": "30",
+        "estoque": "100",
+        "min": "5",
+        "status": "true"
     }, {
-        "nome": "varias coisas",
-        "preco": "100",
-        "qtd": "105",
-        "qtd-minima": "1"
+        "nome": "Cal\u00e7a",
+        "preco": "80",
+        "estoque": "100",
+        "min": "10",
+        "status": "false"
     }, {
-        "nome": "Bala de cora\u00e7\u00e3o",
-        "preco": "10",
-        "qtd": "105",
-        "qtd-minima": "20"
+        "nome": "Cal\u00e7a Jeans",
+        "preco": "150",
+        "estoque": "100",
+        "min": "10",
+        "status": "true"
     }]
 }

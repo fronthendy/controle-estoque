@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a href="#" class="navbar-brand">fronthendy</a> </div>
+                    <a href="#" class="navbar-brand">Lojinha</a> </div>
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="cadastro-produto.php">Cadastro de produtos</a></li>
@@ -36,7 +36,7 @@
                             echo "<li><a> $_SESSION[usuario] </a></li>";
                             echo "<li><a href='login.php?logout=true'>Sair</a></li>";
                         } else {
-                            echo "<li><a href='login.php'>login</a></li>";
+                            echo "<li><a href='login.php'>Login</a></li>";
                         }
                         ?>
                     </ul>
