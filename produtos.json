@@ -1,0 +1,18 @@
+{
+    "produtos": [{
+        "nome": "bala",
+        "preco": "10",
+        "qtd": "105",
+        "qtd-minima": "1"
+    }, {
+        "nome": "varias coisas",
+        "preco": "100",
+        "qtd": "105",
+        "qtd-minima": "1"
+    }, {
+        "nome": "Bala de cora\u00e7\u00e3o",
+        "preco": "10",
+        "qtd": "105",
+        "qtd-minima": "20"
+    }]
+}

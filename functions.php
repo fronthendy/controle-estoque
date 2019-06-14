@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $produtos = [];
 
@@ -51,7 +52,7 @@ $produtos[] = [
 ];
 
 
-function totalProduto ($produtoPreco, $produtoEstoque)
+function totalProduto($produtoPreco, $produtoEstoque)
 {
 
     $total = $produtoPreco * $produtoEstoque;
@@ -72,7 +73,45 @@ function totalEstoque()
 }
 
 
+if (isset($_POST['login'])) {
+    // var_dump($_POST);
+
+    $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : '';
+    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
 
 
+    if ($usuario == "" || $senha == "") {
+        $erros = "Preencha os campos corretamente";
+    } else {
+        $_SESSION['logado'] = true;
+        $_SESSION['usuario'] = $usuario;
+        unset($erros);
+        header('location: index.php');
+    }
+}
+
+if (isset($_POST['cadastro-produto'])) {
+
+    $arquivoProdutos = "produtos.json";
+
+    if (file_exists($arquivoProdutos)) {
+        $jsonProdutos = file_get_contents($arquivoProdutos);
+        $arrayProdutos = json_decode($jsonProdutos, true);
+        unset($_POST['cadastro-produto']);
+        $arrayProdutos['produtos'][] = $_POST;
+        $jsonProdutos = json_encode($arrayProdutos, true);
+        file_put_contents($arquivoProdutos, $jsonProdutos);
+    } else {
+        $arquivo = fopen($arquivoProdutos, "w");
+        $arrayProdutos = ["produtos" => []];
+        $jsonProdutos = json_encode($arrayProdutos, true);
+        var_dump($jsonProdutos);
+        file_put_contents($arquivoProdutos, $jsonProdutos);
+    }
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+}
 
   // var_dump($produtos);
