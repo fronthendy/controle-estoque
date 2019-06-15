@@ -16,13 +16,14 @@ include_once('header.php'); // inclui header na pagina
         <th>Qtd Minima</th>
         <th>Status</th>
         <th>Total</th>
+        <th>Ação</th>
       </tr>
     </thead>
     <tbody>
 
       <?php
-
-      $produtos = exibirProdutos();
+  
+      $produtos = carregaProdutos();
 
       if (count($produtos) > 0) {
 
@@ -35,7 +36,9 @@ include_once('header.php'); // inclui header na pagina
           echo "<td>" . $produtos[$indice]["min"] . "</td>";
           echo "<td>" . ($produtos[$indice]["status"] == "true" ? "Ativo" : "Desativado") . "</td>";
           echo "<td> R$" . number_format(totalProduto($produtos[$indice]['preco'], $produtos[$indice]['estoque']), 2, ',', '.') . "</td>";
+          echo "<td><a href='cadastro-produto.php?pos=".$indice."'>Alterar</a></td>";
           echo "</tr>";
+          
         }
       }
 

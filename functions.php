@@ -95,7 +95,7 @@ if (isset($_POST['cadastro-produto'])) {
     // trazer upload de foto do produto
 
     $arquivoProdutos = "produtos.json";
-
+    
     if (file_exists($arquivoProdutos)) {
         $jsonProdutos = file_get_contents($arquivoProdutos);
         $arrayProdutos = json_decode($jsonProdutos, true);
@@ -115,13 +115,17 @@ if (isset($_POST['cadastro-produto'])) {
     }
 }
 
-function exibirProdutos()
+function carregaProdutos()
 {
     $arquivoProdutos = "produtos.json";
-
+    
     if (file_exists($arquivoProdutos)) {
         $jsonProdutos = file_get_contents($arquivoProdutos);
         $arrayProdutos = json_decode($jsonProdutos, true);
+         
+        // teste se arrayProdutos === false. se for
+        // use a json_last_error_msg para imprimir msg
+        // de erro na tela. 
         return $arrayProdutos["produtos"];
     }
 }
