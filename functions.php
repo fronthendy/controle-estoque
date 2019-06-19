@@ -92,25 +92,44 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['cadastro-produto'])) {
 
-    // trazer upload de foto do produto
-
     $arquivoProdutos = "produtos.json";
-    
+    $imagemProduto = "";
+
+    if ($_FILES) {
+
+        $nome = $_FILES["foto"]["name"]; // nome do arquivo
+        $nomeTemp = $_FILES["foto"]["tmp_name"]; // nome temporario do arquivo
+        $erro = $_FILES["foto"]["error"]; // erros no upload
+        $pastaRaiz = dirname(__FILE__); // encontra local do projeto
+        $pasta = "/produtos/"; // pasta para salvar imagem dos produtos
+
+        $caminhoCompleto = $pastaRaiz . $pasta . $nome; // string com caminho e nome do arquivo
+
+        if ($erro == UPLOAD_ERR_OK) {
+            move_uploaded_file($nomeTemp, $caminhoCompleto); // move arquivo para minha pasta
+            $imagemProduto = $pasta . $nome;
+        }
+    }
+
+
     if (file_exists($arquivoProdutos)) {
         $jsonProdutos = file_get_contents($arquivoProdutos);
         $arrayProdutos = json_decode($jsonProdutos, true);
         unset($_POST['cadastro-produto']);
-        $arrayProdutos['produtos'][] = $_POST;
+        $infoProduto = $_POST;
+        $infoProduto['imagem'] = $imagemProduto;
+        $arrayProdutos['produtos'][] = $infoProduto;
         $jsonProdutos = json_encode($arrayProdutos, true);
         file_put_contents($arquivoProdutos, $jsonProdutos);
+
     } else {
         $arquivo = fopen($arquivoProdutos, "w");
         $arrayProdutos = ["produtos" => []];
         unset($_POST['cadastro-produto']);
-        $_POST["status"] = true;
-        $arrayProdutos['produtos'][] = $_POST;
+        $infoProduto = $_POST;
+        $infoProduto['imagem'] = $imagemProduto;
+        $arrayProdutos['produtos'][] = $infoProduto;
         $jsonProdutos = json_encode($arrayProdutos, true);
-        var_dump($jsonProdutos);
         file_put_contents($arquivoProdutos, $jsonProdutos);
     }
 }
@@ -118,11 +137,11 @@ if (isset($_POST['cadastro-produto'])) {
 function carregaProdutos()
 {
     $arquivoProdutos = "produtos.json";
-    
+
     if (file_exists($arquivoProdutos)) {
         $jsonProdutos = file_get_contents($arquivoProdutos);
         $arrayProdutos = json_decode($jsonProdutos, true);
-         
+
         // teste se arrayProdutos === false. se for
         // use a json_last_error_msg para imprimir msg
         // de erro na tela. 

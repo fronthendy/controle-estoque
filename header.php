@@ -12,6 +12,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/estilo.css">
     <style>
         .vermelho td {
             background-color: #fdb8b8;
@@ -26,7 +27,9 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a href="#" class="navbar-brand">Lojinha</a> </div>
+                    <a href="#" class="navbar-brand">
+                        <img src="img/logo_preto.png" alt="Lojinha">
+                    </a> </div>
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="cadastro-produto.php">Cadastro de produtos</a></li>
