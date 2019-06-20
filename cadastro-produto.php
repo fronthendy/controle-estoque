@@ -8,7 +8,7 @@ require_once('functions.php');
 <main class="container">
     <h1>Cadastro de produto</h1>
 
-    <form action="cadastro-produto.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+    <form action="index.php" method="POST" autocomplete="off" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" name="nome" class="form-control">

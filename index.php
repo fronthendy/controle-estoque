@@ -30,13 +30,17 @@ include_once('header.php'); // inclui header na pagina
         foreach ($produtos as $indice => $valor) {
           $class = ($produtos[$indice]["estoque"] < $produtos[$indice]["min"]) ? "vermelho" : "";
           echo "<tr class='$class'>";
-          echo "<td>" . $produtos[$indice]["nome"] . "</td>";
+          echo "<td><a href='alterar-produto.php?pos=$indice'>" . $produtos[$indice]["nome"] . "</a></td>";
           echo "<td> R$" . $produtos[$indice]["preco"] . "</td>";
           echo "<td>" . $produtos[$indice]["estoque"] . "</td>";
           echo "<td>" . $produtos[$indice]["min"] . "</td>";
-          echo "<td>" . ($produtos[$indice]["status"] == "true" ? "Ativo" : "Desativado") . "</td>";
+          echo "<td>" . (isset($produtos[$indice]["status"]) ? "Ativo" : "Desativado") . "</td>";
           echo "<td> R$" . number_format(totalProduto($produtos[$indice]['preco'], $produtos[$indice]['estoque']), 2, ',', '.') . "</td>";
-          echo "<td><a href='cadastro-produto.php?pos=".$indice."'>Alterar</a></td>";
+          echo "<td>
+          <a href='alterar-produto.php?pos=".$indice."'>Alterar</a>
+          <br>
+          <a href='deletar-produto.php?pos=$indice'>Excluir</a>
+          </td>";
           echo "</tr>";
           
         }
