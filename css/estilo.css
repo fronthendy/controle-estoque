@@ -19,3 +19,29 @@ header nav ul li a {
     text-transform: uppercase;
     font-weight: 600;
 }
+main {
+    padding: 40px 0;
+}
+.table td {
+    text-transform: uppercase;
+}
+
+.table td a:not(.btn) {
+    color: #555;
+    font-weight: 500;
+}
+.table tfoot tr td{
+    padding: 10px 5px;
+    font-weight: 600;
+    background-color: lightgray;
+}
+
+.vermelho td {
+    background-color: #fdb8b8;
+}
+
+footer {
+    border-top: 1px solid rgb(201, 200, 200);
+    padding: 20px 0;
+    color: rgb(139, 139, 139);
+}
